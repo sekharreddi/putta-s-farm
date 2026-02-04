@@ -1,0 +1,110 @@
+.accordion {
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 16px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* Tablet & up */
+@media (min-width: 640px) {
+  .accordion {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+.accordionItem {
+  width: 100%;
+}
+
+/* ✅ QUESTION — GREEN */
+.accordionQuestion {
+  background-color: #5B2333; /* green */
+  color: #F7F4F3;
+
+  border: none;
+  border-radius: 999px;
+  padding: 14px 18px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  cursor: pointer;
+  width: 100%;
+  min-height: 54px;
+
+  transition: 
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.15s ease;
+}
+
+/* Hover effect */
+.accordionQuestion:hover {
+  background-color: #f3e6d3;
+  box-shadow: 0 6px 16px rgba(47, 125, 50, 0.3);
+}
+
+/* Click feel */
+.accordionQuestion:active {
+  transform: scale(0.97);
+}
+
+/* + / - icon */
+.icon {
+  background: #ffffff;
+  color: #2f7d32;
+
+  border-radius: 50%;
+  min-width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  transition: transform 0.25s ease;
+}
+
+/* Rotate icon when open (optional polish) */
+.accordionQuestion:hover .icon {
+  transform: rotate(90deg);
+}
+
+/* ✅ ANSWER — WHITE */
+.accordionAnswer {
+  background-color: #ffffff;
+  color: #1f3d14;
+
+  margin-top: 10px;
+  padding: 16px 20px;
+
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Larger screens */
+@media (min-width: 768px) {
+  .accordionQuestion {
+    font-size: 16px;
+    padding: 16px 22px;
+  }
+
+  .accordionAnswer {
+    font-size: 15px;
+  }
+}
+
