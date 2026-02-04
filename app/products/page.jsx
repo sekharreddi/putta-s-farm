@@ -7,12 +7,15 @@ import { useCart } from "@/context/CartContext";
 import { products } from "@/data/products";
 import styles from "@/components/web/Article.module.css";
 
-export function ProductCard({ product }: { product: any }) {
-  const { addToCart } = useCart() as any;
-  const [quantity, setQuantity] = useState<number>(1);
-  const [weight, setWeight] = useState<string>(product.weights[0]);
+/* ✅ Product Card Component */
+export function ProductCard({ product }) {
+  const { addToCart } = useCart();
+
+  const [quantity, setQuantity] = useState(1);
+  const [weight, setWeight] = useState(product.weights[0]);
   const [isHovered, setIsHovered] = useState(false);
-    const price = product.prices[weight];
+
+  const price = product.prices[weight];
 
   const increment = () => setQuantity((q) => q + 1);
   const decrement = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
@@ -27,12 +30,12 @@ export function ProductCard({ product }: { product: any }) {
   };
 
   return (
-    <div 
+    <div
       className={styles.productCard}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* IMAGE CONTAINER - Made clickable */}
+      {/* IMAGE CONTAINER */}
       <Link href={`/products/${product.id}`} className={styles.productImage}>
         {/* Primary Image */}
         <Image
@@ -43,6 +46,7 @@ export function ProductCard({ product }: { product: any }) {
           style={{ opacity: isHovered ? 0 : 1 }}
           sizes="(max-width: 768px) 100vw, 300px"
         />
+
         {/* Hover Image */}
         <Image
           src={product.images.hover}
@@ -56,7 +60,10 @@ export function ProductCard({ product }: { product: any }) {
 
       {/* CONTENT */}
       <div className={styles.cardContent}>
-        <Link href={`/products/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link
+          href={`/products/${product.id}`}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
           <h2 className={styles.productTitle}>{product.name}</h2>
         </Link>
 
@@ -65,30 +72,45 @@ export function ProductCard({ product }: { product: any }) {
           <span className={styles.ratingValue}>({product.rating})</span>
         </div>
 
+        {/* Weight Dropdown */}
         <select
           className={styles.weightSelect}
           value={weight}
           onChange={(e) => setWeight(e.target.value)}
         >
-          {product.weights.map((w: string) => (
+          {product.weights.map((w) => (
             <option key={w} value={w}>
               {w}
             </option>
           ))}
         </select>
-        <div className={styles.price}>
-          ₹{price}
-        </div>
 
+        {/* Price */}
+        <div className={styles.price}>₹{price}</div>
+
+        {/* Quantity + Add */}
         <div className={styles.actionRow}>
           <div className={styles.stepper}>
-            <button className={styles.stepperBtn} onClick={decrement} type="button">−</button>
-            <span className={styles.stepperValue}>
-            {quantity.toString().padStart(2, "0")}
-            </span>
-            <button className={styles.stepperBtn} onClick={increment} type="button">+</button>
-          </div>
+            <button
+              className={styles.stepperBtn}
+              onClick={decrement}
+              type="button"
+            >
+              −
+            </button>
 
+            <span className={styles.stepperValue}>
+              {quantity.toString().padStart(2, "0")}
+            </span>
+
+            <button
+              className={styles.stepperBtn}
+              onClick={increment}
+              type="button"
+            >
+              +
+            </button>
+          </div>
 
           <button
             className={styles.addToCart}
@@ -103,13 +125,28 @@ export function ProductCard({ product }: { product: any }) {
   );
 }
 
+/* ✅ Products Page */
 export default function ProductsPage() {
   return (
-    <div style={{ padding: "60px", background: "#f7f4f3", minHeight: "100vh" }}>
-      <h1 style={{ color:" #5B2333", textAlign: "center", marginBottom: "40px" }}>All Products</h1>
+    <div
+      style={{
+        padding: "60px",
+        background: "#f7f4f3",
+        minHeight: "100vh",
+      }}
+    >
+      <h1
+        style={{
+          color: "#5B2333",
+          textAlign: "center",
+          marginBottom: "40px",
+        }}
+      >
+        All Products
+      </h1>
 
       <div className={styles.productsGrid}>
-        {products.map((product: any) => (
+        {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

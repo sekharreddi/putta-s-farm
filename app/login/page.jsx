@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -13,43 +13,42 @@ export default function LoginPage() {
   const [isSignup, setIsSignup] = useState(false);
   const [error, setError] = useState("");
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setLoading(true);
-  setError("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
 
-  try {
-    if (isSignup) {
-      const { error } = await supabase.auth.signUp({
+    try {
+      if (isSignup) {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: `${location.origin}/login`,
+          },
+        });
+
+        if (error) throw error;
+
+        alert("Check your email to verify your account");
+        return; // ⛔ stop here, don't auto-login
+      }
+
+      // LOGIN
+      const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
-        options: {
-          emailRedirectTo: `${location.origin}/login`,
-        },
       });
 
       if (error) throw error;
 
-      alert("Check your email to verify your account");
-      return; // ⛔ stop here, don't auto-login
+      router.push("/"); // success login
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-
-    // LOGIN
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) throw error;
-
-    router.push("/"); // success login
-  } catch (err: any) {
-    setError(err.message);
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   return (
     <div style={styles.container}>
@@ -119,7 +118,7 @@ const styles = {
   },
   toggle: {
     marginTop: 12,
-    textAlign: "center" as const,
+    textAlign: "center",
     cursor: "pointer",
     color: "blue",
   },
