@@ -7,7 +7,6 @@ import { useAuth } from "@/context/AuthContext";
 import { supabase } from "@/lib/supabaseClient";
 import styles from "./CheckoutPage.module.css";
 
-
 export default function CheckoutPage() {
   const { cartItems, cartTotal, clearCart } = useCart();
   const { user } = useAuth();
@@ -23,14 +22,24 @@ export default function CheckoutPage() {
     email: "",
   });
 
+  // ✅ JSX version (no TypeScript types)
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const placeOrder = async () => {
-    const { data, error } = await supabase
-      .from("orders")
-      .insert({
+    if (cartItems.length === 0) {
+      alert("Cart is empty!");
+      return;
+    }
+
+    if (!form.full_name || !form.phone || !form.address_line1) {
+      alert("Please fill all required fields");
+      return;
+    }
+
+    const { error } = await supabase.from("orders").insert([
+      {
         user_id: user?.id || null,
         guest_email: user ? null : form.email,
         full_name: form.full_name,
@@ -41,75 +50,89 @@ export default function CheckoutPage() {
         pincode: form.pincode,
         items: cartItems,
         total_amount: cartTotal,
-      })
-      .select()
-      .single();
+        status: "pending",
+      },
+    ]);
 
     if (error) {
-      alert(error.message);
+      alert("Order failed: " + error.message);
       return;
     }
 
-    startRazorpay(data);
-  };
+    alert("Order placed successfully!");
 
-  const startRazorpay = (order) => {
-    const options = {
-      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-      amount: order.total_amount * 100,
-      currency: "INR",
-      name: "Puttaparthi Farms",
-      description: "Order Payment",
-      handler: async (response) => {
-        await supabase
-          .from("orders")
-          .update({
-            payment_status: "paid",
-            razorpay_payment_id: response.razorpay_payment_id,
-          })
-          .eq("id", order.id);
-
-        clearCart();
-        router.push(`/order-success?id=${order.id}`);
-      },
-      prefill: {
-        name: form.full_name,
-        email: form.email,
-        contact: form.phone,
-      },
-    };
-
-    new window.Razorpay(options).open();
+    clearCart();
+    router.push("/thank-you");
   };
 
   return (
-    <div style={{ padding: 30 }}>
     <div className={styles.checkout}>
-  <h1 className={styles.title}>Checkout</h1>
+      <h1 className={styles.title}>Checkout</h1>
 
-  {!user && (
-    <input
-      className={styles.input}
-      name="email"
-      placeholder="Email"
-      onChange={handleChange}
-    />
-  )}
+      {!user && (
+        <input
+          className={styles.input}
+          name="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={handleChange}
+        />
+      )}
 
-  <input className={styles.input} name="full_name" placeholder="Full Name" onChange={handleChange} />
-  <input className={styles.input} name="phone" placeholder="Phone" onChange={handleChange} />
-  <input className={styles.input} name="address_line1" placeholder="Address" onChange={handleChange} />
-  <input className={styles.input} name="city" placeholder="City" onChange={handleChange} />
-  <input className={styles.input} name="state" placeholder="State" onChange={handleChange} />
-  <input className={styles.input} name="pincode" placeholder="Pincode" onChange={handleChange} />
+      <input
+        className={styles.input}
+        name="full_name"
+        placeholder="Full Name"
+        value={form.full_name}
+        onChange={handleChange}
+      />
 
-  <button className={styles.payButton} onClick={placeOrder}>
-    Pay ₹{cartTotal}
-  </button>
-   </div>
-   </div>
+      <input
+        className={styles.input}
+        name="phone"
+        placeholder="Phone"
+        value={form.phone}
+        onChange={handleChange}
+      />
 
-);
+      <input
+        className={styles.input}
+        name="address_line1"
+        placeholder="Address"
+        value={form.address_line1}
+        onChange={handleChange}
+      />
+
+      <input
+        className={styles.input}
+        name="city"
+        placeholder="City"
+        value={form.city}
+        onChange={handleChange}
+      />
+
+      <input
+        className={styles.input}
+        name="state"
+        placeholder="State"
+        value={form.state}
+        onChange={handleChange}
+      />
+
+      <input
+        className={styles.input}
+        name="pincode"
+        placeholder="Pincode"
+        value={form.pincode}
+        onChange={handleChange}
+      />
+
+      <button className={styles.payButton} onClick={placeOrder}>
+        Place Order ₹{cartTotal}
+      </button>
+    </div>
+  );
 }
+
 
 

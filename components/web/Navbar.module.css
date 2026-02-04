@@ -147,6 +147,10 @@ body {
   padding: 10px 0;
   border-bottom: 1px solid #eee;
   font-size: 14px;
+
+}
+.cartCount{
+  color: #F7F4F3;
 }
 
 /* ===============================

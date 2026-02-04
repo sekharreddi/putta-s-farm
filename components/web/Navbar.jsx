@@ -49,7 +49,7 @@ export default function Navbar() {
             />
             </Link>
           </div>
-          <span className={styles.title}>Puttaparthi Farms</span>
+          <span className={styles.title}>Putta's Farms</span>
         </div>
 
         <div className={styles.menu}>
