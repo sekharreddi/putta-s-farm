@@ -3,11 +3,10 @@
 import Image from "next/image";
 import styles from "./Article.module.css";
 import { products } from "@/data/products";
-import { ProductCard } from "@/app/products/page";
+import ProductCard from "@/components/web/ProductCard";
 
 export default function Article() {
-  // pick best seller product
-  const bestSeller = products.find(p => p.id === "groundnut");
+  const bestSeller = products.find((p) => p.bestSeller);
 
   const features = [
     {
@@ -30,22 +29,17 @@ export default function Article() {
 
   return (
     <div>
-      {/* FEATURES SECTION */}
+      {/* FEATURES */}
       <div className={styles.features}>
         {features.map((item, index) => (
           <div className={styles.featureItem} key={index}>
-            <Image
-              src={item.img}
-              alt={item.title}
-              width={60}
-              height={60}
-            />
+            <Image src={item.img} alt={item.title} width={60} height={60} />
             <p>{item.title}</p>
           </div>
         ))}
       </div>
 
-      {/* PRODUCT CARD (IMPORTED FROM PRODUCTS PAGE) */}
+      {/* BEST SELLER */}
       <div className={styles.productWrapper}>
         <h1>Our Best Sellers</h1>
 
@@ -54,5 +48,4 @@ export default function Article() {
     </div>
   );
 }
-
 
