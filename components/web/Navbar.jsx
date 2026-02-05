@@ -41,7 +41,7 @@ export default function Navbar() {
           <div className={styles.logo}>
             <Link href="/" >
             <Image
-              src="/logo.jpg"
+              src="/logo.jpeg"
               alt="Puttaparthi Farms Logo"
               width={120}
               height={40}
