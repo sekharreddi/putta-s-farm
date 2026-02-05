@@ -8,6 +8,8 @@
 
 .container h1 {
   margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 600;
 }
 
 .container p {

@@ -5,7 +5,7 @@ import styles from './ShippingPolicy.module.css';
 export default function TermsOfService() {
   return (
     <main className={styles.container}>
-      <h1>Terms of Service</h1>
+      <h1>Shipping Policy</h1>
 
       <p>
         Please read the following Terms of Service carefully before placing an
