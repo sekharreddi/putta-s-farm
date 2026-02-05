@@ -1,16 +1,12 @@
 .footer {
   background: #5B2333;
-  min-height: 600px;
   position: relative;
   overflow: hidden;
-
-  /* Needed for mobile bottom alignment */
-  display: flex;
-  flex-direction: column;
+  min-height: 600px;
 }
 
 /* =========================
-   TOP ROW (DESKTOP)
+   DESKTOP
 ========================= */
 .top {
   display: flex;
@@ -18,9 +14,7 @@
   padding: 60px 80px;
 }
 
-/* =========================
-   LEFT BRAND
-========================= */
+/* LEFT BRAND */
 .brand {
   max-width: 60%;
   color: #F7F4F3;
@@ -33,9 +27,7 @@
   opacity: 0.9;
 }
 
-/* =========================
-   BIG LOGO (DESKTOP)
-========================= */
+/* BIG LOGO (DESKTOP) */
 .logo {
   position: absolute;
   left: 50%;
@@ -50,9 +42,7 @@
   pointer-events: none;
 }
 
-/* =========================
-   RIGHT LINKS
-========================= */
+/* RIGHT LINKS */
 .links {
   display: flex;
   gap: 120px;
@@ -80,7 +70,6 @@
   color: #F7F4F3;
   text-decoration: none;
   opacity: 0.7;
-  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .column a:hover {
@@ -89,20 +78,19 @@
 }
 
 /* =========================================================
-   ================= MOBILE & TABLET =======================
+   ================= MOBILE FIX (IMPORTANT) =================
 ========================================================= */
 @media (max-width: 768px) {
 
   .footer {
-    min-height: 100vh; /* FULL SCREEN HEIGHT */
+    min-height: 100vh;
+    position: relative;
   }
 
   .top {
-    flex: 1; /* allow pushing logo down */
     display: flex;
     flex-direction: column;
-    padding: 40px 24px;
-    gap: 40px;
+    padding: 32px 24px 120px; /* space for logo */
   }
 
   .brand {
@@ -111,24 +99,26 @@
 
   .tagline {
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
-  /* LOGO AT BOTTOM ON MOBILE */
+  /* ✅ FORCE LOGO TO SCREEN BOTTOM */
   .logo {
-    position: static;
-    transform: none;
-    font-size: 48px;
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;        /* slightly smaller so it fits */
     letter-spacing: -1px;
-    margin-top: auto; /* 🔥 PUSH TO BOTTOM */
-    padding-bottom: 24px;
+    white-space: nowrap;   /* 🔥 FORCE SINGLE LINE */
     text-align: center;
-    white-space: normal;
   }
+
 
   .links {
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
+    margin-top: 32px;
   }
 
   .column h4 {
@@ -140,4 +130,3 @@
     font-size: 16px;
   }
 }
-
