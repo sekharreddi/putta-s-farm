@@ -43,8 +43,8 @@ export default function Navbar() {
             <Image
               src="/logo.jpeg"
               alt="Puttaparthi Farms Logo"
-              width={120}
-              height={40}
+              width={150}
+              height={150}
               priority
             />
             
