@@ -1,18 +1,22 @@
 .footer {
   background: #5B2333;
-  height: 600px;
+  min-height: 600px;
   position: relative;
   overflow: hidden;
 }
 
-/* Top row */
+/* =========================
+   TOP ROW (DESKTOP)
+========================= */
 .top {
   display: flex;
   justify-content: space-between;
   padding: 60px 80px;
 }
 
-/* Left brand */
+/* =========================
+   LEFT BRAND
+========================= */
 .brand {
   max-width: 60%;
   color: #F7F4F3;
@@ -25,7 +29,9 @@
   opacity: 0.9;
 }
 
-/* BIG centered logo */
+/* =========================
+   BIG LOGO (DESKTOP)
+========================= */
 .logo {
   position: absolute;
   left: 50%;
@@ -40,7 +46,9 @@
   pointer-events: none;
 }
 
-/* Right columns */
+/* =========================
+   RIGHT LINKS
+========================= */
 .links {
   display: flex;
   gap: 120px;
@@ -74,4 +82,50 @@
 .column a:hover {
   opacity: 1;
   transform: translateX(4px);
+}
+
+/* =========================================================
+   ==================== MOBILE & TABLET ====================
+========================================================= */
+@media (max-width: 768px) {
+
+  .top {
+    flex-direction: column;
+    padding: 40px 24px;
+    gap: 40px;
+  }
+
+  .brand {
+    max-width: 100%;
+  }
+
+  .tagline {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* LOGO BEHAVIOR ON MOBILE */
+  .logo {
+    position: static;
+    transform: none;
+    font-size: 48px;
+    letter-spacing: -1px;
+    margin-top: 40px;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .links {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .column h4 {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .column a {
+    font-size: 16px;
+  }
 }
