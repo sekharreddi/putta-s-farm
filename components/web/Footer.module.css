@@ -3,6 +3,10 @@
   min-height: 600px;
   position: relative;
   overflow: hidden;
+
+  /* Needed for mobile bottom alignment */
+  display: flex;
+  flex-direction: column;
 }
 
 /* =========================
@@ -85,11 +89,17 @@
 }
 
 /* =========================================================
-   ==================== MOBILE & TABLET ====================
+   ================= MOBILE & TABLET =======================
 ========================================================= */
 @media (max-width: 768px) {
 
+  .footer {
+    min-height: 100vh; /* FULL SCREEN HEIGHT */
+  }
+
   .top {
+    flex: 1; /* allow pushing logo down */
+    display: flex;
     flex-direction: column;
     padding: 40px 24px;
     gap: 40px;
@@ -104,14 +114,15 @@
     margin-bottom: 20px;
   }
 
-  /* LOGO BEHAVIOR ON MOBILE */
+  /* LOGO AT BOTTOM ON MOBILE */
   .logo {
     position: static;
     transform: none;
     font-size: 48px;
     letter-spacing: -1px;
-    margin-top: 40px;
-    text-align: left;
+    margin-top: auto; /* 🔥 PUSH TO BOTTOM */
+    padding-bottom: 24px;
+    text-align: center;
     white-space: normal;
   }
 
@@ -129,3 +140,4 @@
     font-size: 16px;
   }
 }
+
