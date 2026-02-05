@@ -22,54 +22,55 @@ export default function Aside() {
 
   return (
     <section className={styles.wrapper}>
-      {/* LEFT ARROW */}
-      <button
-        className={`${styles.arrow} ${styles.left}`}
-        onClick={() =>
-          setIndex(index === 0 ? slides.length - 1 : index - 1)
-        }
-      >
-        ←
-      </button>
-
-      {/* SLIDER */}
       <div
         className={styles.slider}
         style={{ transform: `translateX(-${index * 100}%)` }}
-
       >
         {slides.map((slide, i) => (
           <div className={styles.slide} key={i}>
-            {/* CENTERED CONTENT */}
             <div className={styles.inner}>
+
+              {/* LEFT ARROW */}
+              <button
+                className={`${styles.arrow} ${styles.left}`}
+                onClick={() =>
+                  setIndex(index === 0 ? slides.length - 1 : index - 1)
+                }
+              >
+                ←
+              </button>
+
+              {/* IMAGE */}
               <div className={styles.imageWrapper}>
                 <Image
                   src={slide.img}
                   alt="Raw groundnuts"
                   fill
                   className={styles.image}
+                  priority
                 />
               </div>
 
+              {/* TEXT */}
               <div className={styles.text}>
                 <p>{slide.text}</p>
               </div>
+
+              {/* RIGHT ARROW */}
+              <button
+                className={`${styles.arrow} ${styles.right}`}
+                onClick={() =>
+                  setIndex(index === slides.length - 1 ? 0 : index + 1)
+                }
+              >
+                →
+              </button>
+
             </div>
           </div>
         ))}
       </div>
-
-      {/* RIGHT ARROW */}
-      <button
-        className={`${styles.arrow} ${styles.right}`}
-        onClick={() =>
-          setIndex(index === slides.length - 1 ? 0 : index + 1)
-        }
-      >
-        →
-      </button>
     </section>
   );
 }
-
 

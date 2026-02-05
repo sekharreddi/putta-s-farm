@@ -54,7 +54,6 @@ body {
   height: 60px;
   object-fit: contain;
 }
-
 .title {
   font-size: 20px;
   font-weight: 600;
@@ -94,16 +93,29 @@ body {
   height: 24px;
 }
 
-.badge {
+
+.cartCount {
   position: absolute;
-  top: -6px;
-  right: -6px;
-  background: #16a34a;
-  color: white;
+  top: -8px;
+  right: -8px;
+
+  background: #F7F4F3;
+  color: #000;
+
   font-size: 11px;
-  padding: 2px 6px;
+  font-weight: 600;
+  line-height: 1;
+
+  padding: 3px 6px;
   border-radius: 999px;
+
+  min-width: 18px;
+  text-align: center;
+
+  z-index: 10; /* 🔥 THIS is key */
 }
+
+
 
 /* ===============================
    OVERLAY
@@ -149,9 +161,7 @@ body {
   font-size: 14px;
 
 }
-.cartCount{
-  color: #F7F4F3;
-}
+
 
 /* ===============================
    MOBILE

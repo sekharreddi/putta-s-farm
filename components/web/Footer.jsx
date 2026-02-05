@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -7,9 +8,11 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.top}>
 
-        {/* Left big text */}
+        {/* Left brand */}
         <div className={styles.brand}>
-          <p className={styles.tagline}></p>
+          <p className={styles.tagline}>
+            From local farmers to your kitchen
+          </p>
           <h1 className={styles.logo}>Putta's Farms</h1>
         </div>
 
@@ -19,11 +22,40 @@ export default function Footer() {
           <div className={styles.column}>
             <h4>Product</h4>
             <ul>
-              <li>Product</li>
-              <li>About</li>
+              <li>
+                <Link href="/products">Products</Link>
+              </li>
+              <li>
+                <Link href="/about">About</Link>
+              </li>
             </ul>
           </div>
 
+          <div className={styles.column}>
+            <h4>Policies</h4>
+            <ul>
+              <li>
+                <Link href="/policies/Privacy-policy">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies/Terms-and-Conditions">
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies/Shipping-policy">
+                  Shipping Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies/Cancellation-and-return-policy">
+                  Cancellation & Return
+                </Link>
+              </li>
+            </ul>
+          </div>
 
         </div>
       </div>

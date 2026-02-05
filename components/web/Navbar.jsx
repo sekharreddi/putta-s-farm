@@ -47,6 +47,7 @@ export default function Navbar() {
               height={40}
               priority
             />
+            
             </Link>
           </div>
           <span className={styles.title}>Putta's Farms</span>
@@ -61,21 +62,7 @@ export default function Navbar() {
             <Link href="/products">About</Link>
             </span>
 
-            {/* AUTH LINKS */}
-            {!loading && (
-            user ? (
-              <button
-                className={styles.authBtn}
-                  onClick={() => logout()}
-              >
-               Logout
-              </button>
-            ) : (
-              <Link className={styles.authBtn} href="/login">
-              Login / Signup
-              </Link>
-            )
-            )}
+            
           </div>
 
 

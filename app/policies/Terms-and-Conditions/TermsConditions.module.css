@@ -1,0 +1,48 @@
+.container {
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.container h1 {
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.container h2 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.container h3 {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.container h4 {
+  margin-top: 16px;
+  margin-bottom: 6px;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.container p {
+  margin-bottom: 16px;
+}
+
+.container ul {
+  list-style-type: disc;
+  padding-left: 22px;
+  margin-bottom: 16px;
+}
+
+.container li {
+  margin-bottom: 8px;
+}

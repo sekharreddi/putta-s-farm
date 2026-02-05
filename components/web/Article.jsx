@@ -28,7 +28,7 @@ export default function Article() {
   ];
 
   return (
-    <div>
+    <div className={styles.block}>
       {/* FEATURES */}
       <div className={styles.features}>
         {features.map((item, index) => (

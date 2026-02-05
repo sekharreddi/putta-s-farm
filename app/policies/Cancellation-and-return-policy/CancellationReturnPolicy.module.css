@@ -1,0 +1,30 @@
+.container {
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.container h1 {
+  margin-bottom: 20px;
+}
+
+.container h2 {
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
+.container p {
+  margin-bottom: 16px;
+}
+
+.container ul {
+  list-style-type: disc;
+  padding-left: 22px;
+  margin-bottom: 16px;
+}
+
+.container li {
+  margin-bottom: 10px;
+}
